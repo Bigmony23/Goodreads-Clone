@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+ <h1> All books</h1>
+
+ {% if books %}
+{% for book in books %}
+   <ul>
+        <li>
+            <strong>Name:</strong>
+            <a href="{% url 'book-detail' book.id %}">
+                {{ book.title }}
+            </a>
+        </li>
+        <!--<li><strong>Description:</strong> {{ books.description }}</li>
+        <li><strong>ISBN:</strong> {{ books.isbn }}</li>-->
+    </ul>
+{% endfor %}
+{% else %}
+No books found.
+{% endif %}
+{% endblock content %}
