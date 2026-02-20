@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-light  mb-4">
   <div class="container-fluid ps-4">
     <a class="navbar-brand" href="#">Goodreads</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,17 +97,17 @@
      <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </p>-->
-
+<div class="container">
 {% if messages %}
 
    {% for message in messages %}
       {{ message }}
    {% endfor %}
 {% endif %}
-<div class="container mt-4">
+
     {% block content %}
     {% endblock content %}
-</div>
 
+</div>
 </body>
 </html>

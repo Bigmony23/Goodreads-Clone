@@ -3,11 +3,28 @@
     <title>Profile</title>
 
 
-<h1> Profile page</h1>
-<img alt="Profile picture" src="{{ user.profile_picture.url}}" class="profile-pic">
-<p> Username {{user.username}}</p>
-<p> First name {{user.first_name}}</p>
-<p> Last name {{user.last_name}}</p>
-<p> Email {{user.email}}</p>
-<a href="{% url 'profile_edit'%}"> Edit profile</a>
+
+
+ <div class=" image d-flex flex-column justify-content-center align-items-center">
+     <button class="btn btn-secondary">
+
+         <img alt="Profile picture" src="{{ user.profile_picture.url}}" class="profile-pic" />
+     </button> <span class="name mt-3">{{user.first_name}} {{user.last_name}}</span>
+     <span class="idd">@{{user.username}}</span>
+      <span class="idd">{{user.email}}</span>
+     <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+     </div> <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+
+     <div class=" d-flex mt-2"> <a class="btn btn-dark" href="{% url 'profile_edit'%}"> Edit profile</a>
+     </div>
+ </div>
+     <div class=" px-2 rounded mt-4 date "> <span class="join">Joined {{user.date_joined|date:"M d,Y"}}</span>
+ </div>
+ </div>
+<!--<img alt="Profile picture" src="{{ user.profile_picture.url}}" >-->
+<!--<p> Username {{user.username}}</p>-->
+<!--<p> First name {{user.first_name}}</p>-->
+<!--<p> Last name {{user.last_name}}</p>-->
+<!--<p> Email {{user.email}}</p>-->
+<!--<a href="{% url 'profile_edit'%}"> Edit profile</a>-->
 {% endblock content %}
