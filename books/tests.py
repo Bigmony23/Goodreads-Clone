@@ -13,15 +13,18 @@ class BooksTestCase(TestCase):
         self.assertContains(response, 'No books found.')
 
     def test_books_list(self):
-        Book.objects.create(title='Book1', description='Description1', isbn='1234' )
-        Book.objects.create(title='Book2', description='Description2', isbn='12345' )
-        Book.objects.create(title='Book3', description='Description3', isbn='123456' )
+        book1=Book.objects.create(title='Book1', description='Description1', isbn='1234' )
+        book2=Book.objects.create(title='Book2', description='Description2', isbn='12345' )
+        book3=Book.objects.create(title='Book3', description='Description3', isbn='123456' )
 
         response=self.client.get(reverse('book-list'))
 
-        books = Book.objects.all()
-        for book in books:
+
+        for book in [book1, book2]:
             self.assertContains(response, book.title)
+
+        response=self.client.get(reverse('book-list')+'?page=2')
+        self.assertContains(response, book3.title)
 
     def test_books_detail(self):
         book=Book.objects.create(title='Book1', description='Description1', isbn='1234' )
