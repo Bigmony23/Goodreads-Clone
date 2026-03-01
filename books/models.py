@@ -24,6 +24,8 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
 class Book_Author(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
