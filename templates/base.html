@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light  mb-4">
+<nav class="navbar navbar-expand-lg navbar-light   mb-4">
   <div class="container-fluid ps-4">
     <a class="navbar-brand" href="#">Goodreads</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,13 +22,13 @@
       <!-- LEFT SIDE -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'home_page' %}">Home</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'home_page' %} active {% endif %}"  href="{% url 'home_page' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'book-list' %}">Books</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'book-list' %} active {% endif %}" href="{% url 'book-list' %}">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">Profile</a>
         </li>
       </ul>
 
@@ -38,7 +38,7 @@
             {% if request.user.is_authenticated %}
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle fw-semibold text-primary"
+                <a class="nav-link dropdown-toggle fw-semibold text-primary "
                    href="#"
                    role="button"
                    data-bs-toggle="dropdown"
@@ -48,7 +48,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end custom-dropdown me-2">
                     <li>
-                        <a class="dropdown-item" href="{% url 'profile' %}">
+                        <a class="dropdown-item {% if request.resolver_match.url_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">
                             Profile
                         </a>
                     </li>
@@ -56,7 +56,7 @@
                     <li><hr class="dropdown-divider"></li>
 
                     <li>
-                        <a class="dropdown-item text-danger"
+                        <a class="dropdown-item text-danger "
                            href="{% url 'logout' %}">
                             Logout
                         </a>
