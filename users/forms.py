@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 
 from users.models import CustomUser
 
@@ -13,6 +14,7 @@ class UserRegisterForm(forms.ModelForm):
         user=super().save(commit)
         user.set_password(self.cleaned_data['password'])
         user.save()
+
         return user
 
 
