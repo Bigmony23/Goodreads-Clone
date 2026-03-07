@@ -11,7 +11,7 @@ def send_welcome_email(sender, instance, created,**kwargs):
         send_mail(
             'Welcome to Goodreads',
             f'Hi {instance.username}, your account has been created. Enjoy books ',
-            'dierbekergasev@gmail.com',
+            '',
             [instance.email],
         )
 

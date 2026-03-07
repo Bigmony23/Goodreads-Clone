@@ -8,6 +8,8 @@ django = "*"
 psycopg2 = "*"
 pillow = "*"
 crispy-bootstrap5 = "*"
+celery = "*"
+pika = "*"
 
 [dev-packages]
 
