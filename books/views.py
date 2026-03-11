@@ -1,11 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, DetailView
 
-from books.forms import ReviewForm
+from books.forms import ReviewForm, ReviewEditForm
 from books.models import Book, Book_Review
 
 
@@ -74,6 +76,34 @@ class AddReview(LoginRequiredMixin,View):
             return redirect(reverse('book-detail',kwargs={'id':book.id}))
         return redirect(request,'books/detail.html',{"book":book,"review_form":review_form})
 
+class EditReviewView(LoginRequiredMixin,View):
+    def get(self, request,book_id,review_id):
+        book = Book.objects.get(id=book_id)
+        review=book.book_review_set.get(id=review_id)
+        review_form=ReviewForm(instance=review)
+        return render(request,'review_edit.html',context={'review_form':review_form,'book':book,'review':review})
 
+    def post(self,request,book_id,review_id):
+        book = Book.objects.get(id=book_id)
+        review = book.book_review_set.get(id=review_id)
+        review_form = ReviewForm(instance=review,data=request.POST)
 
+        if review_form.is_valid():
+            review_form.save()
+            return redirect(reverse('book-detail',kwargs={'id':book.id}))
+        return render(request, 'review_edit.html', context={'review_form': review_form, 'book': book, 'review': review})
+
+class ConfirmDeleteReview(LoginRequiredMixin,View):
+    def get(self, request,book_id,review_id):
+        book = Book.objects.get(id=book_id)
+        review = book.book_review_set.get(id=review_id)
+        return render(request,'confirm_delete.html',context={'book':book,'review':review})
+
+class DeleteReview(LoginRequiredMixin,View):
+    def get(self,request,book_id,review_id):
+        book = Book.objects.get(id=book_id)
+        review = book.book_review_set.get(id=review_id)
+        review.delete()
+        messages.success(request,'Review deleted successfully')
+        return redirect(reverse('book-detail', kwargs={'id': book.id}))
 # Create your views here.
