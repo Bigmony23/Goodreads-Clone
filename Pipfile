@@ -10,6 +10,7 @@ pillow = "*"
 crispy-bootstrap5 = "*"
 celery = "*"
 pika = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
