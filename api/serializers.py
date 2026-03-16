@@ -27,6 +27,8 @@ class UserSerializer(serializers.ModelSerializer):
 class BookReviewSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     book = BookSerializer(read_only=True)
+    book_id = serializers.IntegerField(write_only=True)
+    user_id = serializers.IntegerField(write_only=True)
     class Meta:
         model = Book_Review
         fields = '__all__'
