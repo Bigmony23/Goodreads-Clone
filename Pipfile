@@ -11,6 +11,10 @@ crispy-bootstrap5 = "*"
 celery = "*"
 pika = "*"
 djangorestframework = "*"
+django-environment = "*"
+gunicorn = "*"
+psycopg-binary = "*"
+django-environ = "*"
 
 [dev-packages]
 
